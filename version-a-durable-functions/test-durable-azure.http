@@ -1,0 +1,136 @@
+### =====================================================
+### SCENARIO 1: Valid expense under $100 → Auto-approved
+### =====================================================
+POST https://func-cst8917-rohan-va.azurewebsites.net/api/expenses/start
+Content-Type: application/json
+
+{
+  "employee_name": "Rohan Surti",
+  "employee_email": "rohan@example.com",
+  "amount": 50,
+  "category": "meals",
+  "description": "Team lunch during project meeting",
+  "manager_email": "manager@example.com"
+}
+
+### 👉 After sending:
+### Copy "statusQueryGetUri" and open it to see result
+
+
+### =====================================================
+### SCENARIO 2: >= $100 → Manager approves
+### =====================================================
+POST https://func-cst8917-rohan-va.azurewebsites.net/api/expenses/start
+Content-Type: application/json
+
+{
+  "employee_name": "Rohan Surti",
+  "employee_email": "rohan@example.com",
+  "amount": 250,
+  "category": "software",
+  "description": "Purchased licensed software tool",
+  "manager_email": "manager@example.com"
+}
+
+### 👉 Step 1:
+### Copy "id" from response and replace below
+
+
+### SCENARIO 2 - Manager approves
+POST https://func-cst8917-rohan-va.azurewebsites.net/api/expenses/INSTANCE_ID_HERE/decision
+Content-Type: application/json
+
+{
+  "decision": "approve"
+}
+
+### 👉 Step 2:
+### Open the same "statusQueryGetUri" → should show approved
+
+
+### =====================================================
+### SCENARIO 3: >= $100 → Manager rejects
+### =====================================================
+POST https://func-cst8917-rohan-va.azurewebsites.net/api/expenses/start
+Content-Type: application/json
+
+{
+  "employee_name": "Rohan Surti",
+  "employee_email": "rohan@example.com",
+  "amount": 300,
+  "category": "equipment",
+  "description": "Requested a new monitor",
+  "manager_email": "manager@example.com"
+}
+
+### 👉 Step 1:
+### Copy "id" and replace below
+
+
+### SCENARIO 3 - Manager rejects
+POST https://func-cst8917-rohan-va.azurewebsites.net/api/expenses/INSTANCE_ID_HERE/decision
+Content-Type: application/json
+
+{
+  "decision": "reject"
+}
+
+### 👉 Step 2:
+### Open "statusQueryGetUri" → should show rejected
+
+
+### =====================================================
+### SCENARIO 4: >= $100 → No manager response (Timeout)
+### =====================================================
+POST https://func-cst8917-rohan-va.azurewebsites.net/api/expenses/start
+Content-Type: application/json
+
+{
+  "employee_name": "Rohan Surti",
+  "employee_email": "rohan@example.com",
+  "amount": 175,
+  "category": "travel",
+  "description": "Taxi reimbursement for client visit",
+  "manager_email": "manager@example.com"
+}
+
+### 👉 Do NOT send approval/rejection
+### Wait 2 minutes
+### Then open "statusQueryGetUri"
+### Expected: escalated
+
+
+### =====================================================
+### SCENARIO 5: Missing required fields → Validation error
+### =====================================================
+POST https://func-cst8917-rohan-va.azurewebsites.net/api/expenses/start
+Content-Type: application/json
+
+{
+  "employee_name": "Rohan Surti",
+  "employee_email": "rohan@example.com",
+  "amount": 120,
+  "category": "travel"
+}
+
+### 👉 Expected:
+### status = validation_error
+
+
+### =====================================================
+### SCENARIO 6: Invalid category → Validation error
+### =====================================================
+POST https://func-cst8917-rohan-va.azurewebsites.net/api/expenses/start
+Content-Type: application/json
+
+{
+  "employee_name": "Rohan Surti",
+  "employee_email": "rohan@example.com",
+  "amount": 120,
+  "category": "gaming",
+  "description": "Invalid category test",
+  "manager_email": "manager@example.com"
+}
+
+### 👉 Expected:
+### status = validation_error

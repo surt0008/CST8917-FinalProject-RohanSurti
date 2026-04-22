@@ -1,0 +1,36 @@
+### Valid request
+POST http://localhost:7071/api/validate-expense
+Content-Type: application/json
+
+{
+  "employee_name": "Rohan Surti",
+  "employee_email": "rohan@example.com",
+  "amount": 250,
+  "category": "software",
+  "description": "Purchased licensed software tool",
+  "manager_email": "manager@example.com"
+}
+
+### Missing fields
+POST http://localhost:7071/api/validate-expense
+Content-Type: application/json
+
+{
+  "employee_name": "Rohan Surti",
+  "employee_email": "rohan@example.com",
+  "amount": 250,
+  "category": "software"
+}
+
+### Invalid category
+POST http://localhost:7071/api/validate-expense
+Content-Type: application/json
+
+{
+  "employee_name": "Rohan Surti",
+  "employee_email": "rohan@example.com",
+  "amount": 250,
+  "category": "gaming",
+  "description": "Wrong category",
+  "manager_email": "manager@example.com"
+}
