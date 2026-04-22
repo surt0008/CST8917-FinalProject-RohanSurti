@@ -13,7 +13,7 @@ Content-Type: application/json
   "manager_email": "manager@example.com"
 }
 
-### 👉 After sending:
+### After sending:
 ### Copy "statusQueryGetUri" and open it to see result
 
 
@@ -32,8 +32,7 @@ Content-Type: application/json
   "manager_email": "manager@example.com"
 }
 
-### 👉 Step 1:
-### Copy "id" from response and replace below
+### Step 1:
 
 
 ### SCENARIO 2 - Manager approves
@@ -44,7 +43,7 @@ Content-Type: application/json
   "decision": "approve"
 }
 
-### 👉 Step 2:
+### Step 2:
 ### Open the same "statusQueryGetUri" → should show approved
 
 
@@ -63,7 +62,7 @@ Content-Type: application/json
   "manager_email": "manager@example.com"
 }
 
-### 👉 Step 1:
+###  Step 1:
 ### Copy "id" and replace below
 
 
@@ -75,7 +74,7 @@ Content-Type: application/json
   "decision": "reject"
 }
 
-### 👉 Step 2:
+### Step 2:
 ### Open "statusQueryGetUri" → should show rejected
 
 
@@ -94,7 +93,7 @@ Content-Type: application/json
   "manager_email": "manager@example.com"
 }
 
-### 👉 Do NOT send approval/rejection
+### Do NOT send approval/rejection
 ### Wait 2 minutes
 ### Then open "statusQueryGetUri"
 ### Expected: escalated
@@ -113,7 +112,7 @@ Content-Type: application/json
   "category": "travel"
 }
 
-### 👉 Expected:
+###  Expected:
 ### status = validation_error
 
 
@@ -132,5 +131,5 @@ Content-Type: application/json
   "manager_email": "manager@example.com"
 }
 
-### 👉 Expected:
+###  Expected:
 ### status = validation_error

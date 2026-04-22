@@ -69,8 +69,6 @@ Content-Type: application/json
 
 ### -------------------------------------------------------
 ### Scenario 4: Valid expense >= $100, no manager response
-### Start workflow and do NOT call the manager decision endpoint.
-### Wait for the timeout to expire.
 ### -------------------------------------------------------
 POST http://localhost:7071/api/expenses/start
 Content-Type: application/json

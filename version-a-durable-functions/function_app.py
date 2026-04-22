@@ -182,8 +182,6 @@ def validate_expense_activity(expense: dict) -> dict:
 
 # ---------------------------------------------------------
 # 4) Notification activity
-# For now this logs the final result.
-# This is enough for demo/testing and can be upgraded later.
 # ---------------------------------------------------------
 @app.activity_trigger(input_name="final_result")
 def notify_employee_activity(final_result: dict) -> dict:
